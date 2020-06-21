@@ -9,6 +9,8 @@ lazy val pureconfigVersion = "0.12.3"
 lazy val logbackVersion = "1.2.3"
 lazy val scalaTestVersion = "3.1.1"
 
+enablePlugins(JavaAppPackaging)
+
 lazy val buildSettings =
   Seq(scalaVersion := "2.13.2", crossScalaVersions := Seq("2.12.10", "2.13.2"))
 
@@ -64,5 +66,7 @@ lazy val mtprotoTcp = project
       "com.github.pureconfig" %% "pureconfig" % pureconfigVersion,
       "org.scodec" %% "scodec-testkit" % scodecVersion % Test,
       "dev.zio" %% "zio-test" % zioVersion % Test
-    )
+    ),
+    mainClass in Compile := Some("com.task.Application"),
+    test in assembly := {}
   )
